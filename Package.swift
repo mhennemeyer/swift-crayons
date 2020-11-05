@@ -12,7 +12,7 @@ let package = Package(
             targets: ["swift-crayons"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/mhennemeyer/swift-toolbox", from: "1.1.49")
+        .package(url: "https://github.com/mhennemeyer/swift-toolbox", from: "2.0.0")
     ],
     targets: [
         .target(
