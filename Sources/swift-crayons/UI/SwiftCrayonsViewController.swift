@@ -21,15 +21,15 @@ extension SwiftCrayonsViewController {
         case 0:
             return 1
         default:
-            return MHColorScheme.allColorSchemes.count
+            return Crayon.allCrayons.count
         }
     }
     
     func colorName(for index: Int) -> String {
-        MHColorScheme.allColorSchemes[index].name
+        Crayon.allCrayons[index].name
     }
     
     var selectedColorName: String {
-        ColorschemeDefault.boardColorString!
+        SwiftCrayonsDefaults.crayonName
     }
 }

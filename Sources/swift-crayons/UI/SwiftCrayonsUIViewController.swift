@@ -3,13 +3,13 @@ import swift_toolbox
 
 public class SwiftCrayonsUIViewController: UICollectionViewController, SwiftCrayonsViewController {
     
-    public static func ctrl(didSaveColorscheme: @escaping (String?) -> Void) -> SwiftCrayonsUIViewController {
+    public static func ctrl(didSaveCrayonName: @escaping (String?) -> Void) -> SwiftCrayonsUIViewController {
         let c = SwiftCrayonsUIViewController.fromStoryboard(bundle: .module, name: nil)
-        c.didSaveColorscheme = didSaveColorscheme
+        c.didSaveCrayonName = didSaveCrayonName
         return c
     }
     
-    var didSaveColorscheme: ((String?) -> Void)?
+    var didSaveCrayonName: ((String?) -> Void)?
     
     // MARK: - Life cycle
     
@@ -26,15 +26,15 @@ public class SwiftCrayonsUIViewController: UICollectionViewController, SwiftCray
         collectionView.register(SwiftCrayonsSelectCell.nib(Bundle.module), forCellWithReuseIdentifier: SwiftCrayonsSelectCell.nibName)
         
         collectionView.collectionViewLayout = BoardColorFlowLayout()
-        collectionView.backgroundColor = Colorscheme.primaryColor
+        collectionView.backgroundColor = Crayon.primaryColor
     }
     
     func setupUI() {
-        navigationController?.navigationBar.barTintColor = Colorscheme.primaryColor
-        navigationController?.navigationBar.tintColor = Colorscheme.secondaryColor
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : Colorscheme.secondaryColor]
+        navigationController?.navigationBar.barTintColor = Crayon.primaryColor
+        navigationController?.navigationBar.tintColor = Crayon.secondaryColor
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : Crayon.secondaryColor]
         collectionView.collectionViewLayout = BoardColorFlowLayout()
-        collectionView.backgroundColor = Colorscheme.primaryColor
+        collectionView.backgroundColor = Crayon.primaryColor
         collectionView.reloadData()
     }
     
@@ -49,9 +49,10 @@ public class SwiftCrayonsUIViewController: UICollectionViewController, SwiftCray
     }
     
     func saveColor(_ colorName: String?) {
-        ColorschemeDefault.boardColorString = colorName
+        let newName = colorName ?? SwiftCrayonsDefaults.defaultCrayonName
+        SwiftCrayonsDefaults.crayonName = newName
         collectionView.reloadData()
-        didSaveColorscheme?(colorName)
+        didSaveCrayonName?(colorName)
     }
     
     // MARK: - Collection View
@@ -68,17 +69,17 @@ public class SwiftCrayonsUIViewController: UICollectionViewController, SwiftCray
         switch indexPath.section {
         case 0:
             let selectionCell = SwiftCrayonsSelectionCell.from(collectionView: collectionView, for: indexPath)
-            selectionCell.configure(colorScheme: MHColorScheme.colorSchemeBy(name: selectedColorName))
+            selectionCell.configure(crayon: Crayon.crayonBy(name: selectedColorName))
             return selectionCell
         default:
             let selectCell = SwiftCrayonsSelectCell.from(collectionView: collectionView, for: indexPath)
             let cn = colorName(for: indexPath.row)
             selectCell.configure(
                 colorName: cn,
-                color: MHColorScheme.colorSchemeBy(
+                color: Crayon.crayonBy(
                     name: cn
                 ).backgroundColor,
-                selected: ColorschemeDefault.boardColorString == cn
+                selected: SwiftCrayonsDefaults.crayonName == cn
             )
             return selectCell
         }
