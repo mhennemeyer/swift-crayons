@@ -49,10 +49,8 @@ public class SwiftCrayonsUIViewController: UICollectionViewController, SwiftCray
     }
     
     func saveColor(_ colorName: String?) {
-        let newName = colorName ?? SwiftCrayonsDefaults.defaultCrayonName
-        SwiftCrayonsDefaults.crayonName = newName
-        collectionView.reloadData()
         didSaveCrayonName?(colorName)
+        collectionView.reloadData()
     }
     
     // MARK: - Collection View
