@@ -1,3 +1,3 @@
 # swift-crayons
 
-A description of this package.
+44 Crayon Colorschemes... [more info will be added]
