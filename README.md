@@ -1,3 +1,3 @@
 # swift-crayons
 
-44 Crayon Colorschemes... [more info will be added]
+48 Crayon Colorschemes... [more info will be added]
