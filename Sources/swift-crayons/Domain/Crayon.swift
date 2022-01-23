@@ -47,7 +47,7 @@ public class Crayon {
         cell.tintColor = secondaryColor
         cell.allSubviews.forEach { subview in
             guard subview.tag != 999 else { return }
-            if subview.responds(to: Selector("textColor")) {
+            if subview.responds(to: Selector(("textColor"))) {
                 subview.setValue(secondaryColor, forKey: "textColor")
             }
             //subview.tintColor = secondaryColor
@@ -81,12 +81,20 @@ public class Crayon {
     public var textColor: UIColor
     public var sectionColor: UIColor
     public var name: String
+    public var scheme: CrayonScheme
     
-    public init(backgroundColor: UIColor, textColor: UIColor, sectionColor: UIColor, name: String) {
+    public init(
+        backgroundColor: UIColor,
+        textColor: UIColor,
+        sectionColor: UIColor,
+        name: String,
+        scheme: CrayonScheme
+    ) {
         self.backgroundColor = backgroundColor
         self.textColor = textColor
         self.sectionColor = sectionColor
         self.name = name
+        self.scheme = scheme
     }
     
     // MARK: - Coding

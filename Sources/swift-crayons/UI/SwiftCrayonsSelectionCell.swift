@@ -1,3 +1,4 @@
+#if !os(macOS)
 import UIKit
 import swift_toolbox
 
@@ -11,3 +12,5 @@ class SwiftCrayonsSelectionCell: UICollectionViewCell {
         colorNameLabel.textColor = crayon.textColor
     }
 }
+#endif
+

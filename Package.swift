@@ -5,6 +5,7 @@ let package = Package(
     name: "swift-crayons",
     platforms: [
         .iOS(.v13)
+        
     ],
     products: [
         .library(
@@ -12,7 +13,7 @@ let package = Package(
             targets: ["swift-crayons"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/mhennemeyer/swift-toolbox", from: "2.0.3")
+        .package(url: "https://github.com/mhennemeyer/swift-toolbox", from: "2.0.21")
     ],
     targets: [
         .target(
