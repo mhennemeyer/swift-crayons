@@ -3,6 +3,12 @@ import UIKit
 extension Crayon {
     public static let allCrayons = grayCrayons + redCrayons + greenCrayons + blueCrayons
     
+    public static let lightCrayons = allLightCrayons
+    
+    public static let allLightCrayons = [
+        cayenneLight, mochaLight, plumLight, maroonLight, maraschinoLight, tangerineLight, lemonLight, magentaLight, strawberryLight, salmonLight, cantaloupe, bananaLight, carnationLight
+    ]
+    
     public static let colorfulCrayons = redCrayons + greenCrayons + blueCrayons
     
     public static func crayons(at section: Int) -> [Crayon] {

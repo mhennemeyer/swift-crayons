@@ -71,7 +71,7 @@ public class SwiftCrayonsUIViewController: UICollectionViewController, SwiftCray
             return selectionCell
         default:
             let selectCell = SwiftCrayonsSelectCell.from(collectionView: collectionView, for: indexPath)
-            let cn = colorName(for: indexPath.row)
+            let cn = colorName(for: indexPath.row, section: indexPath.section)
             selectCell.configure(
                 colorName: cn,
                 color: Crayon.crayonBy(
@@ -83,9 +83,12 @@ public class SwiftCrayonsUIViewController: UICollectionViewController, SwiftCray
         }
     }
     
-    public override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard indexPath.section == 1 else { return }
-        saveColor(colorName(for: indexPath.row))
+    public override func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        guard indexPath.section > 0 else { return }
+        saveColor(colorName(for: indexPath.row, section: indexPath.section))
         setupUI()
     }
     
